@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a0f">
+  <title>Intense | Tela Compartilhada</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar wrap">
+    <a class="brand" href="/" aria-label="Intense Tela Compartilhada">
+      <span class="brand-mark">I</span><span><b>INTENSE</b><small>TELA COMPARTILHADA</small></span>
+    </a>
+    <div class="top-actions"><span class="secure"><i></i> Conexão privada</span><button id="headerCreate" class="btn btn-outline">Criar sala <span>↗</span></button></div>
+  </header>
+
+  <main id="home" class="wrap home">
+    <section class="hero">
+      <div class="eyebrow"><span class="pulse"></span> COMPARTILHE MOMENTOS, NÃO COMPLICAÇÕES</div>
+      <h1>Sua tela.<br><span>Sua galera.</span> No mesmo lugar.</h1>
+      <p class="hero-copy">Crie uma sala e convide quem quiser. Compartilhe sua tela, converse por voz e acompanhe tudo em tempo real — sem precisar criar uma conta.</p>
+      <div class="hero-points"><span>✓ Sem cadastro</span><span>✓ Link de convite</span><span>✓ Direto no navegador</span></div>
+    </section>
+
+    <section class="create-card" id="createCard">
+      <div class="card-top"><span class="icon-tile">▣</span><div><h2>Comece uma sala</h2><p>É só dar um nome e chamar o pessoal.</p></div></div>
+      <label for="roomName">Nome da sala</label>
+      <input id="roomName" maxlength="42" placeholder="Ex.: Resenha da galera" autocomplete="off">
+      <div class="secure-note"><span>⌁</span> O convite é gerado automaticamente</div>
+      <button id="createRoom" class="btn btn-primary full">Criar sala <span>→</span></button>
+      <div class="card-foot">Rápido, simples e sem conta.</div>
+    </section>
+
+    <section class="feature-row">
+      <article><div class="feature-icon">▣</div><h3>Compartilhe a tela</h3><p>Mostre jogos, vídeos, apresentações ou qualquer janela.</p></article>
+      <article><div class="feature-icon">♫</div><h3>Fale em tempo real</h3><p>Ative o microfone e converse com quem entrou na sala.</p></article>
+      <article><div class="feature-icon">↗</div><h3>Convide por link</h3><p>Envie o endereço da sala. A pessoa entra direto nela.</p></article>
+    </section>
+    <footer class="site-footer"><span class="brand-mini">INTENSE</span><span>Tela Compartilhada</span><span>Feito para reunir a galera.</span></footer>
+  </main>
+
+  <main id="room" class="room-layout hidden">
+    <header class="room-top">
+      <a class="brand compact" href="/"><span class="brand-mark">I</span><span><b>INTENSE</b><small>TELA COMPARTILHADA</small></span></a>
+      <div class="room-title"><span class="live-dot"></span><span id="roomTitle">Sala</span><span id="roomCode" class="room-code"></span></div>
+      <div class="room-actions"><button id="copyLink" class="btn btn-primary">⛓ Copiar convite</button><button id="moreButton" class="btn btn-icon" title="Mais opções">•••</button><div id="moreMenu" class="menu hidden"><button id="renameButton">Alterar meu nome</button><button id="leaveButton">Sair da sala</button></div></div>
+    </header>
+    <div class="room-main">
+      <section class="stage">
+        <div class="stage-status"><span class="live-dot"></span> SALA AO VIVO <span id="stageCount">1 participante</span></div>
+        <div id="stageEmpty" class="stage-empty"><div class="screen-symbol">▱</div><h2>Esta sala está pronta.</h2><p>Compartilhe sua tela para começar a assistir junto.</p><span class="stage-hint">Sua transmissão aparecerá aqui</span></div>
+        <video id="remoteVideo" autoplay playsinline></video>
+        <div id="shareBadge" class="share-badge hidden">TELA COMPARTILHADA</div>
+        <div class="stage-bottom"><span id="connectionState">Aguardando participantes</span><span>INTENSE <b>●</b></span></div>
+      </section>
+      <aside class="sidebar">
+        <div class="side-heading"><h3>Pessoas na sala</h3><span id="peopleCount">1</span></div>
+        <div id="participants" class="participants"></div>
+        <div class="side-tip"><span>✦</span><div><b>Dica rápida</b><p>Use “Compartilhar tela” para mostrar sua janela ou monitor aos participantes.</p></div></div>
+        <div class="invite-box"><b>Convide mais pessoas</b><p>Copie o link e envie para quem quiser.</p><button id="copyLinkSide" class="btn btn-outline full">Copiar link da sala</button></div>
+      </aside>
+    </div>
+    <footer class="controlbar">
+      <div class="control-left"><span class="control-room-name" id="controlRoomName">Sua sala</span><span class="control-sub">Controles da chamada</span></div>
+      <div class="controls">
+        <button id="shareScreen" class="control-btn main-control"><span>▣</span><b>Compartilhar tela</b></button>
+        <button id="shareAudio" class="control-btn"><span>♫</span><b>Ativar microfone</b></button>
+        <button id="stopShare" class="control-btn" disabled><span>■</span><b>Parar tela</b></button>
+        <button id="leaveButtonBottom" class="control-btn leave-control"><span>↗</span><b>Sair</b></button>
+      </div>
+      <div class="control-help">Compartilhamento seguro via navegador</div>
+    </footer>
+  </main>
+
+  <div id="nameModal" class="modal-backdrop hidden">
+    <form id="nameForm" class="modal">
+      <div class="modal-logo"><span class="brand-mark">I</span></div>
+      <div class="eyebrow centered">VOCÊ FOI CONVIDADO</div><h2>Como podemos te chamar?</h2>
+      <p>Escolha um nome para as pessoas da sala reconhecerem você.</p>
+      <label for="displayName">Seu nome</label><input id="displayName" maxlength="28" placeholder="Digite seu nome" required autocomplete="nickname">
+      <button class="btn btn-primary full" type="submit">Entrar na sala <span>→</span></button>
+      <small>Sem cadastro. Seu nome pode ser alterado depois.</small>
+    </form>
+  </div>
+  <div id="toast" class="toast hidden"></div>
+  <script src="/socket.io/socket.io.js"></script><script src="/app.js"></script>
+</body>
+</html>
